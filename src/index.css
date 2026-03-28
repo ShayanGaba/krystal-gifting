@@ -1,0 +1,350 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 6%;
+    --foreground: 36 33% 97%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 36 33% 97%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 36 33% 97%;
+
+    --primary: 46 65% 52%;
+    --primary-foreground: 0 0% 6%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 36 33% 97%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 30 45% 50%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 46 65% 52%;
+
+    --radius: 1rem;
+
+    --gold: 46 65% 52%;
+    --gold-foreground: 0 0% 6%;
+    --bronze: 30 45% 50%;
+    --cream: 36 33% 97%;
+    --cream-dark: 36 20% 92%;
+    --glass: 0 0% 10%;
+    --success: 150 45% 33%;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 36 33% 97%;
+    --sidebar-primary: 46 65% 52%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 36 33% 97%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 46 65% 52%;
+
+    --font-display: 'Clash Display', sans-serif;
+    --font-subhead: 'Clash Display', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-ui: 'Plus Jakarta Sans', sans-serif;
+
+    --gradient-gold: linear-gradient(135deg, hsl(46, 65%, 52%), hsl(30, 45%, 50%));
+    --gradient-gold-hover: linear-gradient(135deg, hsl(46, 65%, 58%), hsl(30, 45%, 56%));
+    --gradient-dark: linear-gradient(180deg, hsl(0, 0%, 6%), hsl(0, 0%, 10%));
+    --shadow-gold: 0 0 30px rgba(212, 175, 55, 0.3);
+    --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 24px 60px rgba(0, 0, 0, 0.5);
+    --shadow-layered: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 500;
+    /* Clash looks best with tight tracking */
+    letter-spacing: -0.01em;
+  }
+}
+
+
+html::-webkit-scrollbar {
+  width: 5px;
+}
+html::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+html::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #b8860b, #d4a017, #b8860b);
+  border-radius: 100vw;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #d4a017, #f0c040, #d4a017);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #d4a017 #0a0a0a;
+}
+
+/* ─── SIDEBAR SCROLLBAR — thin gold line ─────────────────────────────────── */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 160, 23, 0.25);
+  border-radius: 100vw;
+  transition: background 0.2s;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 160, 23, 0.6);
+}
+
+/* Firefox sidebar */
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 160, 23, 0.25) transparent;
+}
+
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-subhead {
+    font-family: var(--font-subhead);
+    font-style: italic;
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .font-ui {
+    /* Update UI font */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .text-cream {
+    color: hsl(var(--cream));
+  }
+
+  .text-bronze {
+    color: hsl(var(--bronze));
+  }
+
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+
+  .bg-bronze {
+    background-color: hsl(var(--bronze));
+  }
+
+  .bg-glass {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .bg-glass-light {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .bg-glass-white {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
+
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .gradient-gold-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .shadow-layered {
+    box-shadow: var(--shadow-layered);
+  }
+
+  .gold-border {
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .gold-border-strong {
+    border: 3px solid hsl(var(--gold));
+  }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateY(3deg) translateY(-12px);
+  }
+
+  .gold-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gold-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .section-cream {
+    background-color: hsl(36, 33%, 97%);
+    color: hsl(0, 0%, 10%);
+  }
+
+  .section-dark {
+    background-color: hsl(var(--background));
+    color: hsl(var(--cream));
+  }
+
+  .prose-luxury {
+    max-width: 65ch;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes counter-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
