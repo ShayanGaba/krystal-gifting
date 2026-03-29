@@ -50,12 +50,6 @@ export default function Navbar() {
   }, [searchOpen]);
 
   useEffect(() => {
-    if (mobileOpen && mobileSearchRef.current) {
-      setTimeout(() => mobileSearchRef.current?.focus(), 300);
-    }
-  }, [mobileOpen]);
-
-  useEffect(() => {
     setSearchOpen(false);
     setMobileOpen(false);
     setSearchQuery("");
