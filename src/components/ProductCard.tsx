@@ -106,13 +106,16 @@ export default function ProductCard({ product, matchScore }: ProductCardProps) {
               fill={wishlisted ? "currentColor" : "none"}
             />
           </button>
-          <Link
-            to={`/product/${product.id}`}
-            onClick={(e) => e.stopPropagation()}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.location.href = `/product/${product.id}`;
+            }}
             className="w-10 h-10 rounded-full bg-glass gold-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
           >
             <Eye className="w-4 h-4" />
-          </Link>
+          </button>
         </div>
 
         {/* Mobile wishlist */}
@@ -127,7 +130,7 @@ export default function ProductCard({ product, matchScore }: ProductCardProps) {
         </button>
 
         {/* Image */}
-        <div className="aspect-[3/5] overflow-hidden">
+        <div className="aspect-[3/5.7] md:aspect-[3/5] overflow-hidden">
           <img
             src={productImages[product.id] || "/placeholder.svg"}
             alt={product.name}
@@ -141,7 +144,7 @@ export default function ProductCard({ product, matchScore }: ProductCardProps) {
           <p className="font-ui text-[8px] md:text-[10px] tracking-widest text-muted-foreground mb-0.5 md:mb-1 truncate">
             {product.brand}
           </p>
-          <h3 className="font-subhead text-[13px] md:text-lg text-foreground mb-0.5 md:mb-1 leading-tight line-clamp-2 tracking-wide">
+          <h3 className="font-subhead text-[14px] md:text-lg text-foreground mb-0.5 md:mb-1 leading-tight line-clamp-2 tracking-wide">
             {product.name}
           </h3>
           <p className="hidden md:block text-xs text-muted-foreground mb-2 line-clamp-1">
@@ -160,7 +163,7 @@ export default function ProductCard({ product, matchScore }: ProductCardProps) {
 
           <div className="flex items-center justify-between gap-1">
             <div className="flex items-center gap-1 md:gap-2 min-w-0">
-              <span className="font-display text-sm md:text-xl font-bold text-foreground truncate">
+              <span className="font-display text-sm md:text-xl font-bold text-foreground truncate tracking-wider">
                 {formatPrice(product.price)}
               </span>
               {product.originalPrice && (

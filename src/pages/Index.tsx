@@ -944,7 +944,7 @@ export default function HomePage() {
               </Link>
             </div>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-2 gap-2.5 md:gap-4">
             {featuredCollections.map((col, i) => {
               const IconComp = COLLECTION_ICONS[col.id] || Gift;
               return (
@@ -1099,7 +1099,7 @@ export default function HomePage() {
             </Link>
           </FadeIn>
           {/* ✅ 2-col mobile, 4-col desktop */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-4">
             {products.slice(0, 4).map((product, i) => (
               <FadeIn key={product.id} delay={i * 0.06}>
                 <div>

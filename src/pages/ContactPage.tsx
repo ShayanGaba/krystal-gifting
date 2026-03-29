@@ -709,14 +709,14 @@ export default function ContactPage() {
                         </span>
                         <div className="h-px bg-white/5 flex-1" />
                       </div>
-
+                      {/* // Replace the FAQ button in ContactPage.tsx */}
                       <motion.a
                         href="/faq"
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.99 }}
-                        className="w-full h-14 rounded-xl bg-white/5 border border-white/10 font-ui text-[10.5px] tracking-[0.2em] text-white flex items-center justify-center gap-2 hover:bg-white/10 hover:border-white/25 transition-all duration-300"
+                        className="w-full h-auto min-h-[56px] rounded-xl bg-white/5 border border-white/10 font-ui text-[10.5px] tracking-[0.2em] text-white flex items-center justify-center gap-2 hover:bg-white/10 hover:border-white/25 transition-all duration-300 px-4 py-4 text-center"
                       >
-                        <HelpCircle className="w-4 h-4 text-primary" />
+                        <HelpCircle className="w-4 h-4 text-primary flex-shrink-0" />
                         VIEW FREQUENTLY ASKED QUESTIONS
                       </motion.a>
                     </div>

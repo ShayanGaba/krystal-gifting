@@ -399,17 +399,17 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Price */}
-            <div className="flex items-end gap-3">
-              <span className="font-display text-3xl tracking-wider font-bold text-white">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="font-display text-2xl md:text-3xl font-bold text-white whitespace-nowrap tracking-wide">
                 {formatPrice(product.price)}
               </span>
               {product.originalPrice && (
-                <span className="text-xl text-white/25 line-through mb-1">
+                <span className="font-display text-base text-white/25 line-through whitespace-nowrap tracking-wide">
                   {formatPrice(product.originalPrice)}
                 </span>
               )}
               {discount > 0 && (
-                <span className="mb-1 px-2.5 py-1 rounded-full text-xs font-ui bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
+                <span className="px-2.5 py-1 rounded-full text-xs font-ui bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 whitespace-nowrap">
                   -{discount}%
                 </span>
               )}
@@ -689,37 +689,33 @@ export default function ProductDetailPage() {
         {/* Reviews */}
         <div className="mt-16">
           {/* Reviews header — ✅ use StarRating for fractional display */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-            <h2 className="font-display text-2xl font-bold text-white tracking-wide">
-              Reviews
-            </h2>
-            <div className="flex items-center gap-3">
-              <span className="font-display text-3xl tracking-wide font-bold text-white">
-                {product.rating}
-              </span>
-              <div>
-                {/* ✅ StarRating handles fractional — 4.8 shows 4 full + 80% filled 5th star */}
-                <StarRating
-                  rating={product.rating}
-                  size="sm"
-                  className="mb-2"
-                />
-                <p className="text-[10.5px] text-white/25 font-ui mt-0.5">
-                  {product.reviewCount} reviews
-                </p>
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
+            {/* Left — title + rating number + stars */}
+            <div>
+              <h2 className="font-display text-2xl font-bold text-white tracking-wide mb-3">
+                Reviews
+              </h2>
+              <div className="flex items-center gap-3">
+                <span className="font-display text-4xl font-bold text-white">
+                  {product.rating}
+                </span>
+                <div>
+                  <StarRating rating={product.rating} size="md" />
+                  <p className="text-[10.5px] text-white/25 font-ui mt-1">
+                    {product.reviewCount} reviews
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* ✅ Real review bar chart — calculated from actual reviews data */}
-          <div className="flex gap-2 mb-8 max-w-xs">
-            <div className="flex-1 space-y-1.5">
+            {/* ✅ Real review bar chart — calculated from actual reviews data */}
+            <div className="flex-shrink-0 w-48 md:w-56 space-y-1.5">
               {[5, 4, 3, 2, 1].map((stars) => {
                 const dist = getReviewDistribution(product.id);
                 const pct = dist[stars] ?? 0;
                 return (
                   <div key={stars} className="flex items-center gap-2">
-                    <span className="text-[10.5px] text-white/35 w-4 font-ui">
+                    <span className="text-[10px] text-white/35 w-3 font-ui flex-shrink-0">
                       {stars}
                     </span>
                     <div className="flex-1 h-1.5 rounded-full bg-white/6 overflow-hidden">
@@ -733,7 +729,7 @@ export default function ProductDetailPage() {
                         }}
                       />
                     </div>
-                    <span className="text-[10.5px] text-white/30 w-7 font-ui">
+                    <span className="text-[10px] text-white/30 w-6 font-ui flex-shrink-0 text-right">
                       {pct}%
                     </span>
                   </div>

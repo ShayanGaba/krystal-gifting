@@ -139,21 +139,20 @@ export default function CartPage() {
           <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary/80 mb-3 uppercase">
             Review & Checkout
           </p>
-          <div className="flex items-end justify-between gap-4">
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-wide">
-              Your Cart
-            </h1>
-            <div className="flex items-center gap-3">
-              <span className="font-ui text-[10.5px] tracking-[0.2em] text-white/35">
-                {totalItems} {totalItems === 1 ? "ITEM" : "ITEMS"}
-              </span>
-              <button
-                onClick={clearCart}
-                className="font-ui text-[9.5px] tracking-[0.2em] text-white/30 hover:text-red-400/60 transition-colors uppercase"
-              >
-                Clear all
-              </button>
-            </div>
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-wide mb-3">
+            Your Cart
+          </h1>
+          {/* ✅ Moved below heading, above border */}
+          <div className="flex items-center justify-between">
+            <span className="font-ui text-[10.5px] tracking-[0.2em] text-white/35">
+              {totalItems} {totalItems === 1 ? "ITEM" : "ITEMS"}
+            </span>
+            <button
+              onClick={clearCart}
+              className="font-ui text-[9.5px] tracking-[0.2em] text-white/30 hover:text-red-400/60 transition-colors uppercase"
+            >
+              Clear all
+            </button>
           </div>
         </div>
       </div>

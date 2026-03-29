@@ -103,10 +103,10 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between h-20 px-4 lg:px-8">
         {/* Logo with subtext */}
         <Link to="/" className="flex flex-col items-start gap-0 flex-shrink-0">
-          <span className="font-display text-2xl font-bold gradient-gold-text tracking-wide leading-none">
+          <span className="font-display text-xl md:text-2xl font-bold gradient-gold-text tracking-wide leading-none">
             KRYSTAL
           </span>
-          <span className="font-ui text-[9px] tracking-[0.25em] text-foreground/40 uppercase leading-none mt-[3px]">
+          <span className="font-ui text-[7.5px] md:text-[9px] tracking-[0.2em] md:tracking-[0.25em] text-foreground/40 uppercase leading-none mt-[4px] md:mt-[1px]">
             Luxury Corporate Gifting
           </span>
         </Link>
@@ -246,6 +246,7 @@ export default function Navbar() {
       </AnimatePresence>
 
       {/* Mobile Menu */}
+      {/* Mobile Menu — replace existing */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -253,13 +254,41 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden bg-glass border-t border-border overflow-hidden"
+            className="lg:hidden bg-[#0a0a0a]/98 backdrop-blur-xl border-t border-white/8 overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-6 flex flex-col gap-5">
-              {/* Mobile Search */}
+            <div className="container mx-auto px-6 py-8 flex flex-col items-center gap-6">
+              {/* ✅ Centered nav links */}
+              <div className="flex flex-col items-center gap-1 w-full">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.path + link.label}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06 }}
+                    className="w-full"
+                  >
+                    <Link
+                      to={link.path}
+                      onClick={() => setMobileOpen(false)}
+                      className={`font-display text-2xl font-bold py-3 block text-center tracking-wide transition-colors duration-200 ${
+                        isActive(link.path, location.pathname)
+                          ? "text-primary"
+                          : "text-white/70 hover:text-primary"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Divider */}
+              <div className="w-16 h-px bg-primary/30" />
+
+              {/* ✅ Search at bottom of menu */}
               <form
                 onSubmit={handleMobileSearch}
-                className="flex items-center gap-3 px-4 py-3 rounded-full border border-primary/30 bg-white/5"
+                className="flex items-center gap-3 w-full px-4 py-3 rounded-full border border-primary/25 bg-white/4"
               >
                 <Search className="w-4 h-4 text-primary flex-shrink-0" />
                 <input
@@ -268,44 +297,15 @@ export default function Navbar() {
                   value={mobileSearchQuery}
                   onChange={(e) => setMobileSearchQuery(e.target.value)}
                   onKeyDown={(e) => handleSearchKeyDown(e, true)}
-                  placeholder="Search gifts, collections..."
-                  className="flex-1 bg-transparent text-sm font-ui tracking-wide text-foreground placeholder:text-foreground/30 outline-none border-none focus:ring-0"
+                  placeholder="Search gifts..."
+                  className="flex-1 bg-transparent text-sm font-ui text-white placeholder:text-white/30 outline-none border-none focus:ring-0"
                 />
                 {mobileSearchQuery.trim() && (
-                  <button
-                    type="submit"
-                    className="text-primary hover:opacity-70 transition-opacity"
-                    aria-label="Submit search"
-                  >
+                  <button type="submit" className="text-primary">
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 )}
               </form>
-
-              <div className="h-px bg-border/50" />
-
-              {/* Nav Links */}
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.path + link.label}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Link
-                    to={link.path}
-                    onClick={() => setMobileOpen(false)}
-                    className={`font-ui text-sm tracking-widest py-1 block transition-colors duration-200 ${
-                      // ✅ FIX #1 — smart active on mobile too
-                      isActive(link.path, location.pathname)
-                        ? "text-primary"
-                        : "text-foreground/70 hover:text-primary"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
             </div>
           </motion.div>
         )}
