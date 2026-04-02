@@ -85,7 +85,6 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* ── Header ─────────────────────────────────────────────────────── */}
       <div className="pt-32 pb-12 border-b border-white/6">
         <div className="container mx-auto px-4 lg:px-8">
           <FadeIn>
@@ -93,7 +92,6 @@ export default function BlogPage() {
               Insights & Guides
             </p>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              {/* ✅ Fixed: Krystal Journal not Guild Journal */}
               <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-wide">
                 The Krystal Journal
               </h1>
@@ -107,9 +105,7 @@ export default function BlogPage() {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 py-14">
-        {/* ── Featured ──────────────────────────────────────────────────── */}
         <FadeIn>
-          {/* ✅ Not clickable — article not live yet */}
           <div className="group grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-white/7 mb-6 cursor-default">
             <div className="relative h-64 lg:h-auto overflow-hidden">
               <img
@@ -140,7 +136,6 @@ export default function BlogPage() {
                   <Clock className="w-3 h-3" />
                   <span>{featured.readTime}</span>
                 </div>
-                {/* ✅ Coming soon badge instead of read more */}
                 <span className="px-2.5 py-1 rounded-full border border-white/10 text-[9px] font-ui tracking-wider text-white/25">
                   Coming Soon
                 </span>
@@ -149,7 +144,6 @@ export default function BlogPage() {
           </div>
         </FadeIn>
 
-        {/* ── Rest ──────────────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {rest.map((post, i) => (
             <FadeIn key={post.id} delay={i * 0.08}>
@@ -184,7 +178,6 @@ export default function BlogPage() {
                       <Clock className="w-3 h-3" />
                       <span>{post.readTime}</span>
                     </div>
-                    {/* ✅ Coming soon instead of arrow */}
                     <span className="text-[9px] font-ui tracking-wider text-white/20">
                       Soon
                     </span>
@@ -195,7 +188,6 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {/* ── Bottom note ───────────────────────────────────────────────── */}
         <FadeIn delay={0.2} className="mt-14 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/8 bg-white/2">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />

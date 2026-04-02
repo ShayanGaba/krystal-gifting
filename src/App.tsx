@@ -26,8 +26,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // ✅ Sensible defaults — no aggressive refetching
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5,
       retry: 1,
     },
   },

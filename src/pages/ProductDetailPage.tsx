@@ -1,5 +1,3 @@
-//done
-
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -78,7 +76,6 @@ function LogoUpload({
       />
 
       {logoFile ? (
-        // ✅ Preview state
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -108,7 +105,6 @@ function LogoUpload({
           </button>
         </motion.div>
       ) : (
-        // ✅ Drop zone
         <motion.div
           onDragOver={(e) => {
             e.preventDefault();
@@ -266,7 +262,6 @@ export default function ProductDetailPage() {
       toast.success("Added to wishlist!");
     }
   };
-  // ✅ Share functionality — Web Share API with clipboard fallback
   const handleShare = async () => {
     const shareData = {
       title: product.name,
@@ -324,7 +319,6 @@ export default function ProductDetailPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
       <div className="container mx-auto px-4 lg:px-8 py-8 pt-28">
-        {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-white/25 mb-8 font-ui tracking-wide">
           <Link to="/" className="hover:text-primary transition-colors">
             Home
@@ -340,7 +334,6 @@ export default function ProductDetailPage() {
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
-          {/* Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -355,14 +348,12 @@ export default function ProductDetailPage() {
             </div>
           </motion.div>
 
-          {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.15, duration: 0.5 }}
             className="lg:sticky lg:top-28 lg:self-start space-y-5"
           >
-            {/* Badges */}
             <div className="flex flex-wrap gap-2">
               {product.badges.map((badge) => (
                 <span
@@ -380,7 +371,6 @@ export default function ProductDetailPage() {
               ))}
             </div>
 
-            {/* Title */}
             <div>
               <p className="font-ui text-[9.5px] tracking-[0.3em] text-white/30 mb-1 uppercase">
                 {product.brand}
@@ -390,7 +380,6 @@ export default function ProductDetailPage() {
               </h1>
             </div>
 
-            {/* Rating — ✅ fractional stars */}
             <div className="flex items-center gap-3">
               <StarRating rating={product.rating} size="md" />
               <span className="text-sm text-white/60">
@@ -398,7 +387,6 @@ export default function ProductDetailPage() {
               </span>
             </div>
 
-            {/* Price */}
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <span className="font-display text-2xl md:text-3xl font-bold text-white whitespace-nowrap tracking-wide">
                 {formatPrice(product.price)}
@@ -415,7 +403,6 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Stock */}
             <div className="text-sm">
               {product.inStock ? (
                 product.stockCount && product.stockCount < 10 ? (
@@ -432,12 +419,10 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Short desc */}
             <p className="text-sm text-white/45 leading-relaxed">
               {product.shortDescription}
             </p>
 
-            {/* Features */}
             <div className="grid grid-cols-2 gap-2">
               {product.features.map((f) => (
                 <div key={f} className="flex items-start gap-2">
@@ -449,7 +434,6 @@ export default function ProductDetailPage() {
               ))}
             </div>
 
-            {/* Bulk pricing */}
             <div className="bg-white/[0.025] border border-white/7 rounded-xl p-4">
               <p className="font-ui text-[8.5px] tracking-[0.3em] text-primary mb-3 uppercase">
                 Bulk Pricing
@@ -479,10 +463,7 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            {/* Customization */}
             <div className="space-y-3">
-              {/* Logo toggle */}
-              {/* Logo toggle */}
               <label className="flex items-center gap-3 cursor-pointer">
                 <div
                   onClick={() => setAddLogo(!addLogo)}
@@ -499,7 +480,6 @@ export default function ProductDetailPage() {
                 <LogoUpload logoFile={logoFile} setLogoFile={setLogoFile} />
               )}
 
-              {/* Message toggle */}
               <label className="flex items-center gap-3 cursor-pointer">
                 <div
                   onClick={() => setMessage(message ? "" : " ")}
@@ -528,7 +508,6 @@ export default function ProductDetailPage() {
                 </div>
               )}
 
-              {/* Gift wrap */}
               <label className="flex items-center gap-3 cursor-pointer">
                 <div
                   onClick={() => setGiftWrap(!giftWrap)}
@@ -545,7 +524,6 @@ export default function ProductDetailPage() {
               </label>
             </div>
 
-            {/* Quantity */}
             <div className="flex items-center gap-4 flex-wrap">
               <div className="flex items-center border border-white/10 rounded-xl overflow-hidden">
                 <button
@@ -580,7 +558,6 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* CTAs */}
             <div className="space-y-2.5">
               <motion.button
                 onClick={handleAddToCart}
@@ -601,7 +578,6 @@ export default function ProductDetailPage() {
               </motion.button>
             </div>
 
-            {/* Secondary */}
             <div className="flex gap-3">
               <button
                 onClick={handleWishlist}
@@ -625,7 +601,6 @@ export default function ProductDetailPage() {
               </button>
             </div>
 
-            {/* Trust row */}
             <div className="flex flex-wrap gap-4">
               {[
                 { icon: Shield, label: "SSL Secure" },
@@ -644,7 +619,6 @@ export default function ProductDetailPage() {
           </motion.div>
         </div>
 
-        {/* Accordions */}
         <div className="mt-16 max-w-2xl">
           <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary mb-6 uppercase">
             Product Details
@@ -686,11 +660,8 @@ export default function ProductDetailPage() {
           ))}
         </div>
 
-        {/* Reviews */}
         <div className="mt-16">
-          {/* Reviews header — ✅ use StarRating for fractional display */}
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
-            {/* Left — title + rating number + stars */}
             <div>
               <h2 className="font-display text-2xl font-bold text-white tracking-wide mb-3">
                 Reviews
@@ -708,7 +679,6 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            {/* ✅ Real review bar chart — calculated from actual reviews data */}
             <div className="flex-shrink-0 w-48 md:w-56 space-y-1.5">
               {[5, 4, 3, 2, 1].map((stars) => {
                 const dist = getReviewDistribution(product.id);
@@ -784,7 +754,6 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Related */}
         <div className="mt-16">
           <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary mb-3 uppercase">
             You May Also Like

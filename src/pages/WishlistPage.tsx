@@ -1,5 +1,3 @@
-//done
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -48,7 +46,6 @@ export default function WishlistPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Header */}
       <div className="pt-28 pb-8 border-b border-white/6">
         <div className="container mx-auto px-4 lg:px-8">
           <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary/80 mb-3 uppercase">
@@ -66,7 +63,6 @@ export default function WishlistPage() {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 py-8">
-        {/* ✅ 2 cols on mobile, 4 on desktop */}
         <AnimatePresence>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {items.map((item, i) => {
@@ -83,7 +79,6 @@ export default function WishlistPage() {
                   transition={{ duration: 0.35, delay: i * 0.04 }}
                   className="group bg-white/[0.025] border border-white/7 rounded-2xl overflow-hidden hover:border-white/14 transition-colors duration-300"
                 >
-                  {/* Image */}
                   <Link to={`/product/${item.id}`} className="block">
                     <div className="aspect-[3/4] overflow-hidden relative">
                       <img
@@ -91,7 +86,6 @@ export default function WishlistPage() {
                         alt={item.name}
                         className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
                       />
-                      {/* Remove overlay button */}
                       <button
                         onClick={(e) => {
                           e.preventDefault();
@@ -105,7 +99,6 @@ export default function WishlistPage() {
                     </div>
                   </Link>
 
-                  {/* Info */}
                   <div className="p-4">
                     <p className="text-[9.5px] text-white/30 font-ui tracking-wider mb-1">
                       {daysAgo === 0 ? "Added today" : `${daysAgo}d ago`}
@@ -147,7 +140,6 @@ export default function WishlistPage() {
           </div>
         </AnimatePresence>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

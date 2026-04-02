@@ -1,5 +1,3 @@
-//done
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -16,7 +14,6 @@ import { Link } from "react-router-dom";
 import { products, calculateMatch } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 
-// ─── QUESTIONS — no emojis, clean formal copy ─────────────────────────────────
 const questions = [
   {
     key: "recipient",
@@ -110,7 +107,6 @@ const questions = [
   },
 ];
 
-// ─── LOADING SCREEN ───────────────────────────────────────────────────────────
 function LoadingScreen() {
   const steps = [
     "Analysing your preferences…",
@@ -137,7 +133,6 @@ function LoadingScreen() {
         animate={{ opacity: 1, scale: 1 }}
         className="relative z-10 text-center max-w-sm"
       >
-        {/* Spinning ring */}
         <div className="relative w-20 h-20 mx-auto mb-8">
           <motion.div
             animate={{ rotate: 360 }}
@@ -171,7 +166,6 @@ function LoadingScreen() {
           </AnimatePresence>
         </div>
 
-        {/* Progress bar */}
         <div className="w-64 h-px mx-auto rounded-full bg-white/8 overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
@@ -182,7 +176,6 @@ function LoadingScreen() {
           />
         </div>
 
-        {/* Dots */}
         <div className="flex items-center justify-center gap-2 mt-5">
           {[0, 1, 2, 3].map((i) => (
             <motion.div
@@ -201,7 +194,6 @@ function LoadingScreen() {
   );
 }
 
-// ─── RESULTS PAGE ─────────────────────────────────────────────────────────────
 function ResultsPage({
   recommendations,
   onRetake,
@@ -211,7 +203,6 @@ function ResultsPage({
   onRetake: () => void;
   answers: Record<string, string[]>;
 }) {
-  // Summary of what user selected — shown as context pills
   const summaryPills = [
     answers.recipient?.[0],
     answers.occasion?.[0],
@@ -221,7 +212,6 @@ function ResultsPage({
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Hero band */}
       <div className="relative bg-[#0a0a0a] pt-28 pb-12 border-b border-white/6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/5 blur-[120px]" />
@@ -232,7 +222,6 @@ function ResultsPage({
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/25 bg-primary/8 mb-6">
               <Trophy className="w-3.5 h-3.5 text-primary" />
               <span className="font-ui text-[9px] tracking-[0.3em] text-primary uppercase">
@@ -254,7 +243,6 @@ function ResultsPage({
               that match your requirements. Sorted by relevance score.
             </p>
 
-            {/* User's answer context pills */}
             {summaryPills.length > 0 && (
               <div className="flex flex-wrap items-center justify-center gap-2 max-w-xl mx-auto">
                 {summaryPills.map((ans, i) => (
@@ -271,7 +259,6 @@ function ResultsPage({
         </div>
       </div>
 
-      {/* Results grid */}
       <div className="container mx-auto px-4 lg:px-8 py-12">
         {recommendations.length === 0 ? (
           <div className="text-center py-24">
@@ -316,7 +303,6 @@ function ResultsPage({
               ))}
             </motion.div>
 
-            {/* Bottom CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -351,7 +337,6 @@ function ResultsPage({
   );
 }
 
-// ─── MAIN PAGE ────────────────────────────────────────────────────────────────
 export default function AIFinderPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
@@ -359,19 +344,14 @@ export default function AIFinderPage() {
   const [loading, setLoading] = useState(false);
   const [direction, setDirection] = useState(1);
 
-  // ── Auto-advance: when user selects an answer, wait 320ms then go next
-  // The small delay lets the user see their selection highlighted before moving
   const handleSelect = (key: string, value: string) => {
-    // Update answer immediately so checkmark + highlight shows
     setAnswers((prev) => ({ ...prev, [key]: [value] }));
 
-    // Auto-advance after brief pause
     setTimeout(() => {
       if (step < questions.length - 1) {
         setDirection(1);
         setStep((p) => p + 1);
       } else {
-        // Last question — show loader then results
         setLoading(true);
         setTimeout(() => {
           setLoading(false);
@@ -409,7 +389,6 @@ export default function AIFinderPage() {
     setDirection(1);
   };
 
-  // ── Accurate matching: threshold 25 so results always show
   const recommendations = products
     .map((p) => ({ ...p, matchScore: calculateMatch(p, answers) }))
     .filter((p) => p.matchScore >= 25)
@@ -427,9 +406,6 @@ export default function AIFinderPage() {
     );
 
   const q = questions[step];
-
-  // ✅ Progress = steps COMPLETED, not current step
-  // Step 0 with no answer = 0%. Step 0 answered/moved to step 1 = 14% etc.
   const progress = (step / questions.length) * 100;
 
   const slideVariants = {
@@ -440,14 +416,12 @@ export default function AIFinderPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Ambient orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-primary/5 blur-[130px]" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-primary/3 blur-[100px]" />
       </div>
 
       <div className="relative z-10 w-full max-w-xl mx-auto px-4 py-24">
-        {/* ── Header ── */}
         <div className="text-center mb-10">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -481,19 +455,16 @@ export default function AIFinderPage() {
           </motion.p>
         </div>
 
-        {/* ── Progress ── */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
             <span className="font-ui text-[9.5px] tracking-[0.25em] text-white/30 uppercase">
               {q.label}
             </span>
-            {/* ✅ Shows 0% on Q1 — only increments after each completed step */}
             <span className="font-ui text-[9.5px] tracking-[0.2em] text-primary">
               {Math.round(progress)}% complete
             </span>
           </div>
 
-          {/* Bar */}
           <div className="h-px rounded-full bg-white/8 overflow-hidden">
             <motion.div
               className="h-full gradient-gold rounded-full"
@@ -504,7 +475,6 @@ export default function AIFinderPage() {
             />
           </div>
 
-          {/* Step dots */}
           <div className="flex items-center justify-between mt-2.5">
             {questions.map((_, i) => (
               <motion.div
@@ -525,7 +495,6 @@ export default function AIFinderPage() {
           </div>
         </div>
 
-        {/* ── Question ── */}
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={step}
@@ -543,7 +512,6 @@ export default function AIFinderPage() {
               <p className="text-[13.5px] text-white/35">{q.subtitle}</p>
             </div>
 
-            {/* Options — no emojis, clean formal */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {q.options.map((opt, i) => {
                 const selected = answers[q.key]?.[0] === opt.value;
@@ -560,7 +528,6 @@ export default function AIFinderPage() {
                         : "border-white/8 bg-white/[0.02] hover:border-white/18 hover:bg-white/[0.04]"
                     }`}
                   >
-                    {/* Gold left accent on selected */}
                     {selected && (
                       <motion.div
                         layoutId={`accent-${q.key}`}
@@ -583,7 +550,6 @@ export default function AIFinderPage() {
                       {opt.value}
                     </span>
 
-                    {/* Checkmark — appears on select */}
                     <AnimatePresence>
                       {selected && (
                         <motion.div
@@ -608,7 +574,6 @@ export default function AIFinderPage() {
           </motion.div>
         </AnimatePresence>
 
-        {/* ── Navigation — Back + Skip only (Next removed — auto-advance handles it) ── */}
         <div className="flex items-center justify-between mt-8">
           <button
             onClick={handleBack}
@@ -618,7 +583,6 @@ export default function AIFinderPage() {
             <ArrowLeft className="w-3.5 h-3.5" /> BACK
           </button>
 
-          {/* Auto-advance hint */}
           <p className="font-ui text-[9px] tracking-[0.15em] text-white/18 hidden sm:block">
             Select an option to continue
           </p>
@@ -631,7 +595,6 @@ export default function AIFinderPage() {
           </button>
         </div>
 
-        {/* Trust note */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

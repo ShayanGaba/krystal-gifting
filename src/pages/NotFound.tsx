@@ -12,7 +12,6 @@ export default function NotFound() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4 relative overflow-hidden">
-      {/* Ambient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full bg-primary/5 blur-[140px] pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
@@ -22,7 +21,6 @@ export default function NotFound() {
         transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
         className="relative z-10 text-center max-w-md"
       >
-        {/* 404 number */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

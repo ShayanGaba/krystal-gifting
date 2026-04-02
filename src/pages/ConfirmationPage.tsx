@@ -1,12 +1,9 @@
-// do implement localstorage or yk saved option in cart system
-
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check, ArrowRight, MessageCircle, Package, Mail } from "lucide-react";
 
 export default function ConfirmationPage() {
-  // ✅ useMemo prevents new order number on every re-render
   const orderNum = useMemo(
     () =>
       `KRY-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 99999)).padStart(5, "0")}`,
@@ -19,13 +16,11 @@ export default function ConfirmationPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
-      {/* Ambient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
       <div className="container mx-auto px-4 lg:px-8 py-32 relative z-10">
         <div className="max-w-lg mx-auto text-center">
-          {/* ✅ Animated checkmark */}
           <motion.div
             initial={{ scale: 0, rotate: -10 }}
             animate={{ scale: 1, rotate: 0 }}
@@ -56,7 +51,6 @@ export default function ConfirmationPage() {
               confirmation email shortly.
             </p>
 
-            {/* Order number */}
             <button
               onClick={handleCopy}
               className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/4 border border-white/10 hover:border-primary/30 transition-all duration-200 mb-10"
@@ -70,7 +64,6 @@ export default function ConfirmationPage() {
             </button>
           </motion.div>
 
-          {/* Next steps */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,7 +107,6 @@ export default function ConfirmationPage() {
             ))}
           </motion.div>
 
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

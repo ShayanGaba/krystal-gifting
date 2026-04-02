@@ -90,7 +90,6 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Header */}
       <div className="pt-32 pb-14 border-b border-white/6 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] rounded-full bg-primary/4 blur-[130px] pointer-events-none" />
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -115,16 +114,13 @@ export default function FAQPage() {
         </div>
       </div>
 
-      {/* FAQ content */}
       <div className="container mx-auto px-4 lg:px-8 py-14 max-w-3xl">
         {faqData.map((section, si) => (
           <FadeIn key={section.cat} delay={si * 0.06} className="mb-10">
-            {/* Category label */}
             <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary mb-4 uppercase">
               {section.cat}
             </p>
 
-            {/* Items */}
             <div className="space-y-2">
               {section.items.map((item, ii) => {
                 const key = `${section.cat}-${ii}`;
@@ -187,7 +183,6 @@ export default function FAQPage() {
           </FadeIn>
         ))}
 
-        {/* Bottom CTA */}
         <FadeIn
           delay={0.3}
           className="mt-12 p-6 rounded-2xl border border-white/7 bg-white/[0.02] text-center"

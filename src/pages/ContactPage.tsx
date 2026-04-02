@@ -17,19 +17,13 @@ import {
   Zap,
   Link,
 } from "lucide-react";
-import {
-  // ... your existing imports
-  HelpCircle, // <-- Add this
-} from "lucide-react";
+import { HelpCircle } from "lucide-react";
 
-// ─── EMAILJS CONFIG — swap these 3 when handing to client ────────────────────
 const EJS_SERVICE = "service_m1ca9n2";
 const EJS_TEMPLATE = "template_0ivebdn";
 const EJS_KEY = "GlD8bIb_GmDPhs3SJ";
 const WA_NUMBER = "923282200919";
-// ─────────────────────────────────────────────────────────────────────────────
 
-// ─── FADE IN ──────────────────────────────────────────────────────────────────
 function FadeIn({
   children,
   className = "",
@@ -54,7 +48,6 @@ function FadeIn({
   );
 }
 
-// ─── CUSTOM SELECT ────────────────────────────────────────────────────────────
 function CustomSelect({
   value,
   onChange,
@@ -136,7 +129,6 @@ function CustomSelect({
   );
 }
 
-// ─── INPUT CLASS HELPER ───────────────────────────────────────────────────────
 function inputCls(hasError: boolean) {
   return `w-full h-12 px-4 rounded-xl bg-[#0a0a0a] border text-white text-sm placeholder:text-white/20 focus:outline-none transition-all duration-200 ${
     hasError
@@ -145,7 +137,6 @@ function inputCls(hasError: boolean) {
   }`;
 }
 
-// ─── FIELD WRAPPER ────────────────────────────────────────────────────────────
 function Field({
   label,
   required,
@@ -181,7 +172,6 @@ function Field({
   );
 }
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
 const INQUIRY_TYPES = [
   "General Inquiry",
   "Bulk Order (50+ gifts)",
@@ -224,7 +214,6 @@ const TRUST_ITEMS = [
   { icon: Sparkles, text: "Dedicated account manager for orders PKR 50,000+." },
 ];
 
-// ─── CONTACT PAGE ─────────────────────────────────────────────────────────────
 export default function ContactPage() {
   const EMPTY_FORM = {
     name: "",
@@ -240,13 +229,11 @@ export default function ContactPage() {
     "idle",
   );
 
-  // ✅ updateForm — renamed from 'set' to avoid JS built-in conflict
   const updateForm = (k: string, v: string) => {
     setFormState((f) => ({ ...f, [k]: v }));
     if (errors[k]) setErrors((e) => ({ ...e, [k]: "" }));
   };
 
-  // ── Validation ───────────────────────────────────────────────────────────
   const validate = () => {
     const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = "Full name is required.";
@@ -260,10 +247,6 @@ export default function ContactPage() {
     return e;
   };
 
-  // ── Submit ───────────────────────────────────────────────────────────────
-  // ✅ EmailJS sends to your inbox — user stays on page
-  // ✅ WhatsApp link shown in SUCCESS state — user can optionally tap it
-  //    (no forced redirect, no popup blocking)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
@@ -295,7 +278,6 @@ export default function ContactPage() {
     }
   };
 
-  // ── WhatsApp pre-filled message for success state button ─────────────────
   const waMessage = encodeURIComponent(
     `🎁 *New Krystal Inquiry*\n\n*Name:* ${form.name}\n*Email:* ${form.email}${form.phone ? `\n*Phone:* ${form.phone}` : ""}\n*Inquiry:* ${form.inquiry}\n\n*Message:*\n${form.message}`,
   );
@@ -303,7 +285,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] overflow-x-hidden">
-      {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-primary/5 blur-[130px]" />
@@ -331,13 +312,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ══ MAIN CONTENT ══════════════════════════════════════════════════════ */}
       <section className="pb-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 xl:gap-14">
-            {/* ── LEFT — contact info ─────────────────────────────────────── */}
             <div className="lg:col-span-2 space-y-4">
-              {/* Info cards */}
               <FadeIn>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
                   {CONTACT_ITEMS.map((item, i) => (
@@ -368,7 +346,6 @@ export default function ContactPage() {
                 </div>
               </FadeIn>
 
-              {/* WhatsApp card — direct chat link */}
               <FadeIn delay={0.12}>
                 <a
                   href={`https://wa.me/${WA_NUMBER}`}
@@ -394,7 +371,6 @@ export default function ContactPage() {
                 </a>
               </FadeIn>
 
-              {/* Trust signals */}
               <FadeIn delay={0.18}>
                 <div className="p-5 rounded-xl border border-white/6 bg-white/2">
                   <p className="font-ui text-[8.5px] tracking-[0.3em] text-white/25 uppercase mb-4">
@@ -416,11 +392,9 @@ export default function ContactPage() {
               </FadeIn>
             </div>
 
-            {/* ── RIGHT — form ────────────────────────────────────────────── */}
             <div className="lg:col-span-3">
               <FadeIn delay={0.08}>
                 <div className="bg-white/3 border border-white/8 rounded-2xl overflow-hidden">
-                  {/* Form header */}
                   <div className="px-7 pt-7 pb-5 border-b border-white/6">
                     <h2 className="font-display text-2xl font-bold text-white tracking-wider">
                       Send a Message
@@ -431,7 +405,6 @@ export default function ContactPage() {
                   </div>
 
                   <AnimatePresence mode="wait">
-                    {/* ── SUCCESS ────────────────────────────────────────── */}
                     {status === "sent" && (
                       <motion.div
                         key="success"
@@ -466,7 +439,6 @@ export default function ContactPage() {
                           within 4 business hours.
                         </p>
 
-                        {/* Summary card */}
                         <div className="w-full max-w-sm bg-white/3 border border-white/8 rounded-xl p-5 text-left mb-7">
                           <p className="font-ui text-[8px] tracking-[0.3em] text-white/25 uppercase mb-3">
                             What You Sent
@@ -490,8 +462,6 @@ export default function ContactPage() {
                           ))}
                         </div>
 
-                        {/* ✅ WhatsApp in success state — user CHOOSES to click
-                            No forced redirect. Pre-fills their message automatically. */}
                         <a
                           href={waUrl}
                           target="_blank"
@@ -524,7 +494,6 @@ export default function ContactPage() {
                       </motion.div>
                     )}
 
-                    {/* ── ERROR STATE ────────────────────────────────────── */}
                     {status === "error" && (
                       <motion.div
                         key="error"
@@ -569,7 +538,6 @@ export default function ContactPage() {
                       </motion.div>
                     )}
 
-                    {/* ── FORM ───────────────────────────────────────────── */}
                     {(status === "idle" || status === "sending") && (
                       <motion.form
                         key="form"
@@ -579,7 +547,6 @@ export default function ContactPage() {
                         exit={{ opacity: 0, y: -8 }}
                         className="px-7 py-6 space-y-4"
                       >
-                        {/* Name + Email */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <Field label="Full Name" required error={errors.name}>
                             <input
@@ -609,7 +576,6 @@ export default function ContactPage() {
                           </Field>
                         </div>
 
-                        {/* Phone + Inquiry */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <Field label="Phone Number" error={errors.phone}>
                             <input
@@ -637,7 +603,6 @@ export default function ContactPage() {
                           </Field>
                         </div>
 
-                        {/* Message */}
                         <Field
                           label="Your Message"
                           required
@@ -654,7 +619,6 @@ export default function ContactPage() {
                           />
                         </Field>
 
-                        {/* Submit */}
                         <div className="pt-1">
                           <motion.button
                             type="submit"
@@ -709,7 +673,6 @@ export default function ContactPage() {
                         </span>
                         <div className="h-px bg-white/5 flex-1" />
                       </div>
-                      {/* // Replace the FAQ button in ContactPage.tsx */}
                       <motion.a
                         href="/faq"
                         whileHover={{ scale: 1.01 }}
@@ -728,7 +691,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ══ STATS STRIP ═══════════════════════════════════════════════════════ */}
       <section className="border-t border-white/6 py-12 bg-[#070707]">
         <div className="container mx-auto px-4 lg:px-8">
           <FadeIn>

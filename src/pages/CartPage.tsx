@@ -1,5 +1,3 @@
-//done
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -133,7 +131,6 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Header */}
       <div className="bg-[#0a0a0a] pt-28 pb-8 border-b border-white/6">
         <div className="container mx-auto px-4 lg:px-8">
           <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary/80 mb-3 uppercase">
@@ -142,7 +139,6 @@ export default function CartPage() {
           <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-wide mb-3">
             Your Cart
           </h1>
-          {/* ✅ Moved below heading, above border */}
           <div className="flex items-center justify-between">
             <span className="font-ui text-[10.5px] tracking-[0.2em] text-white/35">
               {totalItems} {totalItems === 1 ? "ITEM" : "ITEMS"}
@@ -157,7 +153,6 @@ export default function CartPage() {
         </div>
       </div>
 
-      {/* Free shipping bar */}
       <div className="bg-[#0d0d0d] border-b border-white/5">
         <div className="container mx-auto px-4 lg:px-8 py-3">
           <div className="flex items-center justify-between mb-2">
@@ -200,10 +195,8 @@ export default function CartPage() {
         </div>
       </div>
 
-      {/* Main */}
       <div className="container mx-auto px-4 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Items */}
           <div className="flex-1 min-w-0 space-y-3">
             <AnimatePresence>
               {items.map((item, i) => (
@@ -293,7 +286,6 @@ export default function CartPage() {
             </Link>
           </div>
 
-          {/* Summary */}
           <div className="lg:w-[340px] flex-shrink-0">
             <div className="lg:sticky lg:top-28 space-y-3">
               <div className="bg-[#0d0d0d] border border-white/8 rounded-2xl overflow-hidden">

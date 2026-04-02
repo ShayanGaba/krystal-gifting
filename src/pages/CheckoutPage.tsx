@@ -21,12 +21,10 @@ import {
 } from "@/lib/whatsapp";
 import emailjs from "@emailjs/browser";
 
-// ─── Config ─────────────────────────────────────────────────────────────────
 const EJS_SERVICE = "service_m1ca9n2";
 const EJS_TEMPLATE = "template_0ivebdn";
 const EJS_KEY = "GlD8bIb_GmDPhs3SJ";
 
-// ─── Custom Select ───────────────────────────────────────────────────────────
 function Select({
   value,
   onChange,
@@ -91,7 +89,6 @@ function Select({
   );
 }
 
-// ─── Section Card ─────────────────────────────────────────────────────────────
 function Card({
   title,
   children,
@@ -166,7 +163,6 @@ export default function CheckoutPage() {
     }
     setSubmitting(true);
 
-    // Build order summary text
     const itemsSummary = items
       .map(
         (i) =>
@@ -202,7 +198,7 @@ export default function CheckoutPage() {
       .join("\n");
 
     try {
-      // ✅ Send to EmailJS
+      // send to emailJS
       await emailjs.send(
         EJS_SERVICE,
         EJS_TEMPLATE,
@@ -218,7 +214,7 @@ export default function CheckoutPage() {
       );
     } catch (err) {
       console.error("EmailJS error:", err);
-      // Still proceed — don't block user
+      // still proceed — don't block user
     }
 
     clearCart();
@@ -243,7 +239,6 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Header */}
       <div className="pt-28 pb-8 border-b border-white/6">
         <div className="container mx-auto px-4 lg:px-8">
           <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary/80 mb-3 uppercase">
@@ -253,7 +248,6 @@ export default function CheckoutPage() {
             <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-wide">
               Checkout
             </h1>
-            {/* ✅ Progress steps */}
             <div className="flex items-center gap-2">
               {["Cart", "Details", "Confirm"].map((s, i) => (
                 <React.Fragment key={s}>
@@ -286,9 +280,7 @@ export default function CheckoutPage() {
           onSubmit={handleSubmit}
           className="grid grid-cols-1 lg:grid-cols-3 gap-6"
         >
-          {/* Left — forms */}
           <div className="lg:col-span-2 space-y-5">
-            {/* Customer Info */}
             <Card title="Customer Information">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -350,7 +342,6 @@ export default function CheckoutPage() {
               </div>
             </Card>
 
-            {/* Delivery */}
             <Card title="Delivery Address">
               <div className="space-y-4">
                 <div>
@@ -397,7 +388,6 @@ export default function CheckoutPage() {
               </div>
             </Card>
 
-            {/* Shipping */}
             <Card title="Shipping Method">
               <div className="space-y-3">
                 {[
@@ -457,7 +447,6 @@ export default function CheckoutPage() {
               </div>
             </Card>
 
-            {/* Payment */}
             <Card title="Payment Method">
               <div className="space-y-3">
                 {[
@@ -510,7 +499,6 @@ export default function CheckoutPage() {
             </Card>
           </div>
 
-          {/* Right — summary */}
           <div className="lg:sticky lg:top-28 lg:self-start space-y-4">
             <div className="bg-[#0d0d0d] border border-white/8 rounded-2xl overflow-hidden">
               <div className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
@@ -519,7 +507,6 @@ export default function CheckoutPage() {
                   Order Summary
                 </h2>
 
-                {/* Items */}
                 <div className="space-y-3 mb-5">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center gap-3">
@@ -547,7 +534,6 @@ export default function CheckoutPage() {
 
                 <div className="h-px bg-white/6 mb-4" />
 
-                {/* Totals */}
                 <div className="space-y-2.5 text-sm mb-5">
                   <div className="flex justify-between">
                     <span className="text-white/40">Subtotal</span>
@@ -576,7 +562,6 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                {/* Submit */}
                 <motion.button
                   type="submit"
                   disabled={submitting}
@@ -620,7 +605,6 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Trust */}
             <div className="bg-white/[0.02] border border-white/6 rounded-xl px-5 py-4 space-y-3">
               {[
                 { icon: Lock, label: "Secure & encrypted checkout" },

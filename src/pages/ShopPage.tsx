@@ -16,7 +16,6 @@ import { useSearchParams } from "react-router-dom";
 import { products, categories } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 
-// ─── QUICK FILTER MAP ─────────────────────────────────────────────────────────
 const QUICK_FILTER_MAP: Record<string, (p: (typeof products)[0]) => boolean> = {
   All: () => true,
   Bestseller: (p) => p.badges.includes("Bestseller"),
@@ -25,7 +24,6 @@ const QUICK_FILTER_MAP: Record<string, (p: (typeof products)[0]) => boolean> = {
   Premium: (p) => p.badges.includes("Premium"),
 };
 
-// ─── SEARCH ERROR CLASSIFIER ──────────────────────────────────────────────────
 function classifySearchError(query: string, resultCount: number) {
   if (resultCount > 0) return null;
   const t = query.trim();
@@ -60,7 +58,6 @@ function classifySearchError(query: string, resultCount: number) {
   };
 }
 
-// ─── CUSTOM SELECT ────────────────────────────────────────────────────────────
 function CustomSelect({
   value,
   onChange,
@@ -131,7 +128,6 @@ function CustomSelect({
   );
 }
 
-// ─── FILTER TAG ───────────────────────────────────────────────────────────────
 function FilterTag({
   label,
   onRemove,
@@ -157,7 +153,6 @@ function FilterTag({
   );
 }
 
-// ─── MAIN SHOP PAGE ───────────────────────────────────────────────────────────
 export default function ShopPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -243,7 +238,6 @@ export default function ShopPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* ── HEADER ────────────────────────────────────────────────────────── */}
       <div className="bg-[#0a0a0a] pt-28 pb-8 border-b border-white/6">
         <div className="container mx-auto px-4 lg:px-8">
           <p className="font-ui text-[9.5px] tracking-[0.35em] text-primary/80 mb-3 uppercase">
@@ -317,10 +311,8 @@ export default function ShopPage() {
         </div>
       </div>
 
-      {/* ── MAIN LAYOUT ───────────────────────────────────────────────────── */}
       <div className="container mx-auto px-4 lg:px-8 py-7">
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* ════════ MOBILE FILTER DRAWER ════════ */}
           <AnimatePresence>
             {showFilters && (
               <>
@@ -384,7 +376,6 @@ export default function ShopPage() {
             )}
           </AnimatePresence>
 
-          {/* ════════ DESKTOP SIDEBAR ════════ */}
           <div className="hidden lg:block w-60 flex-shrink-0">
             <div
               className="sticky top-24 sidebar-scroll overflow-y-auto pr-1"
@@ -405,9 +396,7 @@ export default function ShopPage() {
             </div>
           </div>
 
-          {/* ════════ PRODUCT GRID AREA ════════ */}
           <div className="flex-1 min-w-0">
-            {/* Top bar */}
             <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
               <div className="flex items-center gap-3">
                 <button
@@ -434,7 +423,6 @@ export default function ShopPage() {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Grid toggle */}
                 <div className="hidden sm:flex items-center gap-0.5 p-1 rounded-xl bg-[#1a1a1a] border border-white/8">
                   <button
                     onClick={() => setGridCols(3)}
@@ -459,7 +447,6 @@ export default function ShopPage() {
               </div>
             </div>
 
-            {/* Results */}
             <AnimatePresence mode="wait">
               {filtered.length === 0 ? (
                 <motion.div
@@ -522,7 +509,6 @@ export default function ShopPage() {
   );
 }
 
-// ─── SIDEBAR CONTENT ──────────────────────────────────────────────────────────
 function SidebarContent({
   search,
   setSearch,
@@ -550,7 +536,6 @@ function SidebarContent({
 }) {
   return (
     <div className="space-y-4">
-      {/* ── Search input — elevated + gold focus ring ── */}
       <div className="relative">
         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-primary/50" />
         <input
@@ -575,7 +560,6 @@ function SidebarContent({
         )}
       </div>
 
-      {/* ── Quick filters ── */}
       <div>
         <p className="font-ui text-[8.5px] tracking-[0.3em] text-white/35 mb-2.5 uppercase">
           Quick Filter
@@ -597,7 +581,6 @@ function SidebarContent({
         </div>
       </div>
 
-      {/* ── Price range ── */}
       <div className="bg-[#141414] border border-white/8 rounded-xl p-4">
         <div className="flex items-center justify-between mb-3">
           <p className="font-ui text-[8.5px] tracking-[0.3em] text-white/35 uppercase">
@@ -624,7 +607,6 @@ function SidebarContent({
         </div>
       </div>
 
-      {/* ── Categories ── */}
       <div className="bg-[#141414] border border-white/8 rounded-xl p-4">
         <p className="font-ui text-[8.5px] tracking-[0.3em] text-white/35 uppercase mb-2.5">
           Categories
@@ -655,7 +637,6 @@ function SidebarContent({
         </div>
       </div>
 
-      {/* ── Clear All ── */}
       <AnimatePresence>
         {hasActiveFilters && (
           <motion.button

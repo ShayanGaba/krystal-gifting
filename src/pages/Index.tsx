@@ -30,13 +30,6 @@ import { heroImage, collectionImages } from "@/assets/imageMap";
 import { collections, products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// FONT NOTE: Add to your index.css @import:
-// @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&family=Outfit:wght@300;400;500;600;700&display=swap');
-// Then set: --font-display: 'Bodoni Moda', serif; --font-body: 'Outfit', sans-serif; --font-ui: 'Outfit', sans-serif;
-// ─────────────────────────────────────────────────────────────────────────────
-
-// ─── SCROLL PROGRESS BAR ─────────────────────────────────────────────────────
 function ScrollProgressBar() {
   const { scrollYProgress } = useScroll();
   return (
@@ -50,7 +43,6 @@ function ScrollProgressBar() {
   );
 }
 
-// ─── ANIMATED COUNTER ────────────────────────────────────────────────────────
 function AnimatedCounter({
   target,
   suffix = "",
@@ -82,7 +74,6 @@ function AnimatedCounter({
   );
 }
 
-// ─── FADE IN ──────────────────────────────────────────────────────────────────
 function FadeIn({
   children,
   className = "",
@@ -107,7 +98,6 @@ function FadeIn({
   );
 }
 
-// ─── MARQUEE STRIP ───────────────────────────────────────────────────────────
 function MarqueeStrip() {
   const items = [
     "✦ SHELL PAKISTAN",
@@ -142,14 +132,10 @@ function MarqueeStrip() {
   );
 }
 
-// ─── NEWSLETTER POPUP ────────────────────────────────────────────────────────
-// Shows once per 30 days — resets automatically for seasonal offers.
-
-// ─── CONFIGURATION ───────────────────────────────────────────────────────────
 const POPUP_KEY = "krystal_nl_dismissed_at";
-const SUB_KEY = "krystal_nl_subscribed"; // New key to track actual sign-ups
+const SUB_KEY = "krystal_nl_subscribed"; 
 const POPUP_COOLDOWN_DAYS = 7;
-const SHOW_DELAY_MS = 10000; // 10 seconds
+const SHOW_DELAY_MS = 10000; 
 
 function NewsletterPopup() {
   const [open, setOpen] = useState(false);
@@ -158,11 +144,9 @@ function NewsletterPopup() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    // 1. Check if they already subscribed (Never show again if true)
     const isSubscribed = localStorage.getItem(SUB_KEY);
     if (isSubscribed) return;
 
-    // 2. Check Cooldown logic for dismissed popups
     const dismissedAt = localStorage.getItem(POPUP_KEY);
     if (dismissedAt) {
       const lastDismissed = Number(dismissedAt);
@@ -172,10 +156,8 @@ function NewsletterPopup() {
       if (daysSince < POPUP_COOLDOWN_DAYS) return;
     }
 
-    // 3. Set the timer to show the popup
     const timer = setTimeout(() => setOpen(true), SHOW_DELAY_MS);
 
-    // 4. Keyboard Listener for 'Esc' key
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") dismiss();
     };
@@ -189,7 +171,6 @@ function NewsletterPopup() {
 
   const dismiss = () => {
     setOpen(false);
-    // If they haven't submitted, we just set a cooldown
     if (!submitted) {
       localStorage.setItem(POPUP_KEY, Date.now().toString());
     }
@@ -211,15 +192,9 @@ function NewsletterPopup() {
     }
 
     setError("");
-
-    // --- INTEGRATION POINT ---
-    // Here you would normally fetch() to your backend or Mailchimp
-    // console.log("Subscribing:", email);
-
     setSubmitted(true);
-    localStorage.setItem(SUB_KEY, "true"); // Mark as permanently subscribed
+    localStorage.setItem(SUB_KEY, "true"); 
 
-    // Close after success message is read
     setTimeout(dismiss, 3000);
   };
 
@@ -242,10 +217,8 @@ function NewsletterPopup() {
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-sm bg-[#0d0d0d] rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]"
           >
-            {/* Top accent line */}
             <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-            {/* Ambient glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-primary/10 blur-[60px] pointer-events-none" />
 
             <div className="px-8 pt-8 pb-10 relative z-10">
@@ -355,7 +328,6 @@ function NewsletterPopup() {
   );
 }
 
-// ─── NEWSLETTER STRIP ────────────────────────────────────────────────────────
 function NewsletterStrip() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -377,7 +349,6 @@ function NewsletterStrip() {
     }
     setError("");
     setStatus("loading");
-    // TODO: Connect to your email service (Mailchimp, ConvertKit, etc.)
     setTimeout(() => {
       setStatus("success");
       setEmail("");
@@ -498,8 +469,6 @@ function NewsletterStrip() {
   );
 }
 
-// ─── TESTIMONIAL CAROUSEL ─────────────────────────────────────────────────────
-// Auto-advances every 4s. Pauses on hover/touch. Manual nav + progress bar.
 const testimonials = [
   {
     name: "Sarah Khan",
@@ -587,7 +556,6 @@ function TestimonialCarousel() {
           onTouchStart={() => setPaused(true)}
           onTouchEnd={() => setPaused(false)}
         >
-          {/* Card */}
           <div className="relative overflow-hidden rounded-2xl min-h-[260px] md:min-h-[230px]">
             <AnimatePresence mode="wait">
               <motion.div
@@ -636,9 +604,7 @@ function TestimonialCarousel() {
             </AnimatePresence>
           </div>
 
-          {/* Controls row */}
           <div className="flex items-center justify-between mt-6">
-            {/* Arrow nav */}
             <div className="flex items-center gap-2">
               <button
                 onClick={prev}
@@ -656,7 +622,6 @@ function TestimonialCarousel() {
               </button>
             </div>
 
-            {/* Dot indicators */}
             <div className="flex items-center gap-2">
               {testimonials.map((_, i) => (
                 <button
@@ -671,14 +636,12 @@ function TestimonialCarousel() {
               ))}
             </div>
 
-            {/* Slide counter */}
             <span className="font-ui text-[10px] tracking-[0.2em] text-white/25">
               {String(current + 1).padStart(2, "0")} /{" "}
               {String(total).padStart(2, "0")}
             </span>
           </div>
 
-          {/* Auto-play progress bar */}
           {!paused && (
             <div className="mt-3 h-px bg-white/8 rounded-full overflow-hidden">
               <motion.div
@@ -696,7 +659,6 @@ function TestimonialCarousel() {
   );
 }
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
 const FEATURED_IDS = [
   "executive-luxury",
   "client-appreciation",
@@ -765,7 +727,6 @@ const steps = [
   },
 ];
 
-// ─── HOME PAGE ────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -783,7 +744,6 @@ export default function HomePage() {
       <ScrollProgressBar />
       <NewsletterPopup />
 
-      {/* ══════════════════════════════════════════ HERO ══════════════════════════════════════════ */}
       <section
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center bg-[#0a0a0a] overflow-hidden"
@@ -808,7 +768,6 @@ export default function HomePage() {
           style={{ opacity: heroOpacity }}
           className="relative z-10 container mx-auto px-4 lg:px-8 text-center pt-24"
         >
-          {/* Pill badge — responsive single line */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -849,7 +808,6 @@ export default function HomePage() {
             goodwill. Curated for the world's most discerning brands.
           </motion.p>
 
-          {/* CTAs — ✅ fixed icon h-4 */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -870,7 +828,6 @@ export default function HomePage() {
             </Link>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -913,7 +870,6 @@ export default function HomePage() {
 
       <MarqueeStrip />
 
-      {/* ══════════════════════════════════════════ GIFT COLLECTIONS ══════════════════════════════════════════ */}
       <section className="bg-[#f8eeec] py-24 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -1001,7 +957,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════ AI FINDER ══════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] py-24 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/3 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[170px]" />
@@ -1072,7 +1027,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════ TRENDING PRODUCTS ══════════════════════════════════════════ */}
       <section className="bg-[#f8eeec] py-24 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -1098,7 +1052,6 @@ export default function HomePage() {
               VIEW ALL <ArrowRight className="w-3 h-3" />
             </Link>
           </FadeIn>
-          {/* ✅ 2-col mobile, 4-col desktop */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-4">
             {products.slice(0, 4).map((product, i) => (
               <FadeIn key={product.id} delay={i * 0.06}>
@@ -1119,7 +1072,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════ WHY KRYSTAL ══════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] py-24 border-t border-white/5">
         <div className="container mx-auto px-4 lg:px-8">
           <FadeIn className="text-center mb-14">
@@ -1167,7 +1119,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════ HOW IT WORKS ══════════════════════════════════════════ */}
       <section className="bg-[#f8eeec] py-24 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -1187,7 +1138,6 @@ export default function HomePage() {
               to Delivered
             </h2>
           </FadeIn>
-          {/* ✅ 2-col on mobile, 4-col on desktop */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 relative">
             <div className="hidden md:block absolute top-[44px] left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
             {steps.map((step, i) => (
@@ -1218,10 +1168,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonial Carousel */}
       <TestimonialCarousel />
 
-      {/* ══════════════════════════════════════════ STATS BANNER ══════════════════════════════════════════ */}
       <section className="gradient-gold py-14 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.08] pointer-events-none"
@@ -1253,7 +1201,6 @@ export default function HomePage() {
 
       <NewsletterStrip />
 
-      {/* ══════════════════════════════════════════ FINAL CTA ══════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] py-24 relative overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[140px]" />

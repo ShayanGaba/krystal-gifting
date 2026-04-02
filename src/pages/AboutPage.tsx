@@ -1,11 +1,8 @@
-//done
-
 import React, { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-// ─── CURTAIN REVEAL ───────────────────────────────────────────────────────────
 function Reveal({
   children,
   delay = 0,
@@ -30,7 +27,6 @@ function Reveal({
   );
 }
 
-// ─── FADE ─────────────────────────────────────────────────────────────────────
 function Fade({
   children,
   delay = 0,
@@ -55,7 +51,6 @@ function Fade({
   );
 }
 
-// ─── ABOUT PAGE — 3 SECTIONS ──────────────────────────────────────────────────
 export default function AboutPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroScroll } = useScroll({
@@ -85,17 +80,12 @@ export default function AboutPage() {
 
   return (
     <div className="bg-[#0a0a0a] text-white">
-      {/* ══════════════════════════════════════════════════════════════
-          SECTION 01 — WHO
-      ══════════════════════════════════════════════════════════════ */}
       <section
         ref={heroRef}
         className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16"
       >
-        {/* Ambient orb */}
         <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-primary/5 blur-[160px] pointer-events-none" />
 
-        {/* Left rail — hidden on mobile so it doesn't look off-center */}
         <motion.div
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
@@ -107,7 +97,6 @@ export default function AboutPage() {
           style={{ opacity: heroOpacity, y: heroY }}
           className="relative z-10 container mx-auto px-4 lg:px-8"
         >
-          {/* Overline — centered on mobile, left on desktop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -123,7 +112,6 @@ export default function AboutPage() {
             </span>
           </motion.div>
 
-          {/* Hero headline — centered on mobile, left on desktop */}
           <div className="max-w-5xl mx-auto md:mx-0 text-center md:text-left">
             <Reveal delay={0.3}>
               <h1 className="font-display font-bold leading-[0.86] tracking-tight text-[14vw] md:text-[10.5vw] lg:text-[9vw] text-white">
@@ -142,7 +130,6 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          {/* Bottom row — stacked centered on mobile, side-by-side on desktop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -154,7 +141,6 @@ export default function AboutPage() {
               2020. 100+ enterprise clients. 5+ countries.
             </p>
 
-            {/* Stats — centered on mobile */}
             <div className="flex items-center justify-center gap-8 md:gap-10">
               {[
                 { v: "100+", l: "Clients" },
@@ -180,7 +166,6 @@ export default function AboutPage() {
           </motion.div>
         </motion.div>
 
-        {/* Bottom gold rule */}
         <div className="absolute bottom-0 left-0 right-0">
           <motion.div
             initial={{ scaleX: 0 }}
@@ -191,12 +176,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          02 — THE STORY: Cream editorial section
-      ══════════════════════════════════════════ */}
-      {/* ══════════════════════════════════════════
-          02 — THE STORY: Cream editorial section
-      ══════════════════════════════════════════ */}
       <section className="bg-[#f5ede8] py-28 md:py-36 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -213,7 +192,6 @@ export default function AboutPage() {
           </Fade>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20 items-start">
-            {/* Pull quote */}
             <div>
               <Reveal delay={0.05}>
                 <p className="font-display text-[1.9rem] md:text-[2.4rem] font-bold text-[#0a0a0a] leading-[1.15]">
@@ -228,7 +206,6 @@ export default function AboutPage() {
               </Reveal>
             </div>
 
-            {/* Body */}
             <Fade delay={0.15}>
               <div className="space-y-5 pt-1">
                 <p className="text-[14px] text-[#0a0a0a]/60 leading-[1.9]">
@@ -248,7 +225,6 @@ export default function AboutPage() {
                   its core.
                 </p>
 
-                {/* --- BLOG CTA ADDED HERE --- */}
                 <div className="pt-6">
                   <Link
                     to="/blog"
@@ -263,16 +239,12 @@ export default function AboutPage() {
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-500 ease-out" />
                   </Link>
                 </div>
-                {/* --------------------------- */}
               </div>
             </Fade>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SECTION 03 — WHAT WE STAND FOR
-      ══════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0a0a0a] py-28 md:py-36 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.025] pointer-events-none"

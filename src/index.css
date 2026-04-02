@@ -90,7 +90,6 @@
   h6 {
     font-family: 'Clash Display', sans-serif;
     font-weight: 500;
-    /* Clash looks best with tight tracking */
     letter-spacing: -0.01em;
   }
 }
@@ -110,13 +109,11 @@ html::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #d4a017, #f0c040, #d4a017);
 }
 
-/* Firefox */
 html {
   scrollbar-width: thin;
   scrollbar-color: #d4a017 #0a0a0a;
 }
 
-/* ─── SIDEBAR SCROLLBAR — thin gold line ─────────────────────────────────── */
 .sidebar-scroll::-webkit-scrollbar {
   width: 3px;
 }
@@ -132,7 +129,6 @@ html {
   background: rgba(212, 160, 23, 0.6);
 }
 
-/* Firefox sidebar */
 .sidebar-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(212, 160, 23, 0.25) transparent;
@@ -154,7 +150,6 @@ html {
   }
 
   .font-ui {
-    /* Update UI font */
     font-family: 'Plus Jakarta Sans', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.12em;
