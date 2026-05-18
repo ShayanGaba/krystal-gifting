@@ -27,7 +27,8 @@ import {
   Award,
 } from "lucide-react";
 import { heroImage, collectionImages } from "@/assets/imageMap";
-import { collections, products } from "@/data/products";
+import { collections } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 import ProductCard from "@/components/ProductCard";
 
 function ScrollProgressBar() {
@@ -133,9 +134,9 @@ function MarqueeStrip() {
 }
 
 const POPUP_KEY = "krystal_nl_dismissed_at";
-const SUB_KEY = "krystal_nl_subscribed"; 
+const SUB_KEY = "krystal_nl_subscribed";
 const POPUP_COOLDOWN_DAYS = 7;
-const SHOW_DELAY_MS = 10000; 
+const SHOW_DELAY_MS = 10000;
 
 function NewsletterPopup() {
   const [open, setOpen] = useState(false);
@@ -193,7 +194,7 @@ function NewsletterPopup() {
 
     setError("");
     setSubmitted(true);
-    localStorage.setItem(SUB_KEY, "true"); 
+    localStorage.setItem(SUB_KEY, "true");
 
     setTimeout(dismiss, 3000);
   };
@@ -728,6 +729,7 @@ const steps = [
 ];
 
 export default function HomePage() {
+  const { products } = useProducts();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -738,6 +740,11 @@ export default function HomePage() {
   const featuredCollections = collections.filter((c) =>
     FEATURED_IDS.includes(c.id),
   );
+  // useEffect(() => {
+  //   getProducts().then((data) => {
+  //     console.log("Sanity products:", data);
+  //   });
+  // }, []);
 
   return (
     <div className="overflow-x-hidden">

@@ -13,7 +13,8 @@ import {
   Filter,
 } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
-import { products, categories } from "@/data/products";
+import { categories } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 import ProductCard from "@/components/ProductCard";
 
 const QUICK_FILTER_MAP: Record<string, (p: (typeof products)[0]) => boolean> = {
@@ -154,6 +155,7 @@ function FilterTag({
 }
 
 export default function ShopPage() {
+  const { products } = useProducts();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [search, setSearch] = useState(searchParams.get("search") || "");

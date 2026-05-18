@@ -11,7 +11,8 @@ import {
   Trophy,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { products, calculateMatch } from "@/data/products";
+import { calculateMatch } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 import ProductCard from "@/components/ProductCard";
 
 const questions = [
@@ -338,6 +339,7 @@ function ResultsPage({
 }
 
 export default function AIFinderPage() {
+  const { products } = useProducts();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [showResults, setShowResults] = useState(false);
